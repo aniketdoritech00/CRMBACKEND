@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow">
+    <title>Welcome to Doritech!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            background:#fdfaf8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        table,td {border-collapse:collapse;}
+        img {border:0;height:auto;outline:0;}
+        p,h1,h2,h3,h4,h5,h6 {margin:0;}
+        a {text-decoration:none;}
+        ul,ol {margin:0;padding:0;list-style-position:inside;}
+        .container {max-width:600px;margin:0 auto;background:#fdfaf8;}
+        .content-padding {padding:10px 30px;}
+        .main-content-padding {padding:40px 30px 20px 30px;}
+        .heading {font-size:28px;color:#4a2c2a;font-weight:bold;padding:10px;}
+        .sub-heading {font-size:16px;color:#5c4b4a;padding-bottom:20px;}
+        .text-md {font-size:16px;color:#4a2c2a;line-height:1.6;}
+        .text-sm {font-size:14px;color:#7f706f;}
+        .card {
+            max-width:560px;
+            margin:0 auto;
+            background:#fff;
+            border-radius:8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            animation: fadeInCard 0.8s ease;
+        }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .center {text-align:center;}
+        .button {
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 25px;
+            background:linear-gradient(to right, #f99497 0%, #A0522D 100%);
+            color:white;
+            border-radius:6px;
+            font-weight:600;
+            transition:background 0.3s,transform 0.3s;
+        }
+        .button:hover {
+            transform:scale(1.05);
+            background:linear-gradient(to right, #A0522D 0%, #f99497 100%);
+        }
+        .footer {
+            background: linear-gradient(to right, #f99497 0%, #A0522D 100%);
+            padding: 18px 0 10px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .footer-social a {
+            display: inline-block;
+            margin: 0 5px;
+            text-decoration: none;
+            border-radius: 50%;
+            background: #fff;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.3s;
+        }
+        .footer-social a:hover {
+            transform: scale(1.12);
+            opacity: 0.85;
+            box-shadow: 0 2px 8px #A0522D33;
+            background: linear-gradient(135deg, #ffd9cc 0%, #A0522D 100%);
+            color: #A0522D;
+        }
+        @media (max-width:480px) {
+            .container,.card {width:100%; border-radius: 0;}
+            .main-content-padding {padding: 30px 20px 10px 20px;}
+            .content-padding {padding: 10px 20px;}
+        }
+    </style>
+</head>
+
+<body>
+<div class="container" style="padding: 20px 0;">
+    <div class="card">
+        <div class="main-content-padding">
+            <div class="center" style="padding:10px;max-width:175px;margin:0 auto;">
+                <img alt="Welcome New Customer" src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" width="175" height="175">
+            </div>
+            <div class="center heading">Welcome to Doritech!</div>
+            <div class="center sub-heading">
+                We're thrilled to have you join our growing family of valued customers.
+            </div>
+
+            <div class="text-md">
+                <p>Hi <strong>{{customerName}}</strong>,</p>
+                <p>Your customer account has been successfully created with the following details:</p>
+                <ul style="margin-left: 15px;">
+                    <li><strong>Customer Code:</strong> {{customerCode}}</li>
+                    <li><strong>Company Name:</strong> {{customerName}}</li>
+                </ul>
+                <p>Our team will reach out shortly to assist you with onboarding and service setup.</p>
+                <div class="center">
+                    <a href="https://www.doritech.in" class="button">Visit Our Website</a>
+                </div>
+            </div>
+
+            <div style="height:40px;"></div>
+            <div class="text-md">
+                <strong>Need help?</strong><br>
+                If you have any questions, reply to this email or reach out to our support team.
+            </div>
+        </div>
+
+        <div class="content-padding">
+            <div class="text-sm">
+                For any inquiries, please contact our support team at 
+                <span style="color:#A0522D;"><strong>support@doritech.in</strong></span>
+            </div>
+            <div class="text-sm" style="margin-top: 8px;">
+                <!--<span style="color:#A0522D;"><strong>Call us: +91-9876543210</strong></span>-->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;">
+          <tr>
+            <td class="footer">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 10px;">
+                <tr>
+                  <td style="text-align: center;">
+                   <!-- <span style="color: #ffd9cc; font-size: 12px; margin-right: 18px;">
+                      <i class="fas fa-phone" style="margin-right: 4px;"></i> +91-9876543210
+                    </span>-->
+                    <span style="color: #ffd9cc; font-size: 12px;">
+                      <i class="fas fa-envelope" style="margin-right: 4px;"></i> support@doritech.in
+                    </span>
+                  </td>
+                </tr>
+              </table>
+              <div style="text-align: center; margin-bottom: 8px;" class="footer-social">
+                <a href="#" style="width: 28px; height: 28px; background-color: #3b5998; color: #fff; line-height: 28px; font-size: 13px; text-align: center;">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" style="width: 28px; height: 28px; background-color: #E1306C; color: #fff; line-height: 28px; font-size: 13px; text-align: center;">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" style="width: 28px; height: 28px; background-color: #0077b5; color: #fff; line-height: 28px; font-size: 13px; text-align: center;">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+              <div style="text-align: center; margin-bottom: 6px;">
+                <a href="#" style="color: #ffe6df; margin: 0 8px; font-size: 12px;">Privacy Policy</a> |
+                <a href="#" style="color: #ffe6df; margin: 0 8px; font-size: 12px;">Terms</a> |
+                <a href="#" style="color: #ffe6df; margin: 0 8px; font-size: 12px;">Help</a>
+              </div>
+              <p style="margin: 0; color: #ffdfd4; font-size: 11px; text-align: center;">
+                © 2025 Doritech Pvt. Ltd. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
