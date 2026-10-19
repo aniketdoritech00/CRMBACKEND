@@ -31,7 +31,7 @@ public class DiwaliCustomerController {
 	public DiwaliCustomerController(DiwaliCustomerService service) {
 		this.service = service;
 	}
-
+	
 	@PostMapping("/createCustomer")
 	public ResponseEntity<ApiResponse<DiwaliCustomer>> createCustomer(@RequestBody DiwaliCustomer customer) {
 		return service.createCustomer(customer);

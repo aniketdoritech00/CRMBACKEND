@@ -47,14 +47,13 @@ public class DiwaliCustomerPdfService {
 	private static final float SINGLE_W = 624f;
 	private static final float SINGLE_H = SINGLE_W * IMG_PX_H / IMG_PX_W;
 
-	// Multiple envelopes on A4: 10 per page (2 columns x 5 rows)
-	private static final int PER_PAGE = 10;
+	// Multiple envelopes on A4: 5 per page (1 column x 5 rows), centered
+	private static final int PER_PAGE = 5;
 
-	private static final float LIST_W = 245f;
-	private static final float LIST_H = LIST_W * IMG_PX_H / IMG_PX_W;
+	private static final float LIST_W = 300f; // was 245
+	private static final float LIST_H = LIST_W * IMG_PX_H / IMG_PX_W; // ~151.9
 
 	private static final float LIST_GAP = 8f;
-	private static final float HORIZONTAL_GAP = 12f;
 
 	private static final float BASE_WIDTH = 500f;
 	private static final float BOLD_SIZE = 11f;
@@ -91,8 +90,7 @@ public class DiwaliCustomerPdfService {
 			} else {
 				Image background = loadBackground();
 
-				drawEnvelope(writer, background, customer, 0, SINGLE_H, SINGLE_W, SINGLE_H,
-						SINGLE_W / BASE_WIDTH);
+				drawEnvelope(writer, background, customer, 0, SINGLE_H, SINGLE_W, SINGLE_H, SINGLE_W / BASE_WIDTH);
 			}
 
 			succeeded = true;
@@ -106,7 +104,7 @@ public class DiwaliCustomerPdfService {
 
 	// ---------------------------------------------------------
 	// Generate PDF for all customers
-	// Ten envelopes per A4 page
+	// Five envelopes per A4 page, centered
 	// ---------------------------------------------------------
 
 	@Transactional(readOnly = true)
@@ -120,8 +118,8 @@ public class DiwaliCustomerPdfService {
 			PdfWriter writer = PdfWriter.getInstance(document, out);
 			document.open();
 
-			List<DiwaliCustomer> customers = diwaliCustomerRepository.findAll().stream()
-					.filter(this::hasValidAddress).collect(Collectors.toList());
+			List<DiwaliCustomer> customers = diwaliCustomerRepository.findAll().stream().filter(this::hasValidAddress)
+					.collect(Collectors.toList());
 
 			if (customers.isEmpty()) {
 				addMessage(document, "No customers with a valid address found.");
@@ -139,25 +137,24 @@ public class DiwaliCustomerPdfService {
 	}
 
 	// ---------------------------------------------------------
-	// Multiple envelopes layout
+	// Multiple envelopes layout (1 column x 5 rows, centered)
 	// ---------------------------------------------------------
 
-	private void createMultipleEnvelopesOnPage(Document document, PdfWriter writer,
-			List<DiwaliCustomer> customers) throws DocumentException, IOException {
+	private void createMultipleEnvelopesOnPage(Document document, PdfWriter writer, List<DiwaliCustomer> customers)
+			throws DocumentException, IOException {
 
 		Image background = loadBackground();
 
 		float fontScale = LIST_W / BASE_WIDTH;
 		Rectangle page = document.getPageSize();
 
-		int columns = 2;
-		int rows = 5;
+		int rows = PER_PAGE;
 
-		float totalWidth = columns * LIST_W + (columns - 1) * HORIZONTAL_GAP;
+		// Always center a full block of 5 slots, even on a partly filled last page
 		float totalHeight = rows * LIST_H + (rows - 1) * LIST_GAP;
 
-		float startX = (page.getWidth() - totalWidth) / 2f;
-		float startTop = (page.getHeight() + totalHeight) / 2f;
+		float x = (page.getWidth() - LIST_W) / 2f; // horizontal center
+		float startTop = (page.getHeight() + totalHeight) / 2f; // vertical center
 
 		for (int i = 0; i < customers.size(); i++) {
 
@@ -167,11 +164,7 @@ public class DiwaliCustomerPdfService {
 
 			DiwaliCustomer customer = customers.get(i);
 
-			int slot = i % PER_PAGE;
-			int row = slot / columns;
-			int column = slot % columns;
-
-			float x = startX + column * (LIST_W + HORIZONTAL_GAP);
+			int row = i % PER_PAGE;
 			float top = startTop - row * (LIST_H + LIST_GAP);
 
 			drawEnvelope(writer, background, customer, x, top, LIST_W, LIST_H, fontScale);

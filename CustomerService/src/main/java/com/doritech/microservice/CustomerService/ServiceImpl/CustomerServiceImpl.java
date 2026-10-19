@@ -22,7 +22,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ByteArrayResource;
@@ -67,37 +66,34 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private static final Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-	@Autowired
-	private CustomerRepository customerRepository;
+	private final CustomerRepository customerRepository;
+	private final TagRepository tagRepository;
+	private final CustomerTagRepository customerTagRepository;
+	private final CustomerMapper customerMapper;
+	private final ContactMapper contactMapper;
+	private final CustomerAddressMapper customerAddressMapper;
+	private final CustomerGeneratorService customerGeneratorService;
+	private final EmailService emailService;
+	private final ContactRepository contactRepository;
+	private final CustomerAddressRepository customerAddressRepository;
 
-	@Autowired
-	private TagRepository tagRepository;
+	public CustomerServiceImpl(CustomerRepository customerRepository, TagRepository tagRepository,
+			CustomerTagRepository customerTagRepository, CustomerMapper customerMapper, ContactMapper contactMapper,
+			CustomerAddressMapper customerAddressMapper, CustomerGeneratorService customerGeneratorService,
+			EmailService emailService, ContactRepository contactRepository,
+			CustomerAddressRepository customerAddressRepository) {
 
-	@Autowired
-	private CustomerTagRepository customerTagRepository;
-
-	@Autowired
-	private CustomerMapper customerMapper;
-
-	@Autowired
-	private ContactMapper contactMapper;
-
-	@Autowired
-	private CustomerAddressMapper customerAddressMapper;
-
-	@Autowired
-	private CustomerGeneratorService customerGeneratorService;
-
-	@Autowired
-	private EmailService emailService;
-
-	// Additional dependencies needed for contact and address operations.
-
-	@Autowired
-	private ContactRepository contactRepository;
-
-	@Autowired
-	private CustomerAddressRepository customerAddressRepository;
+		this.customerRepository = customerRepository;
+		this.tagRepository = tagRepository;
+		this.customerTagRepository = customerTagRepository;
+		this.customerMapper = customerMapper;
+		this.contactMapper = contactMapper;
+		this.customerAddressMapper = customerAddressMapper;
+		this.customerGeneratorService = customerGeneratorService;
+		this.emailService = emailService;
+		this.contactRepository = contactRepository;
+		this.customerAddressRepository = customerAddressRepository;
+	}
 
 	// =========================================================
 	// 1. CREATE CUSTOMER

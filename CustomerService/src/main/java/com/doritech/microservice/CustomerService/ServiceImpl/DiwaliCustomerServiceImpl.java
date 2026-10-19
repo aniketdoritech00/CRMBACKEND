@@ -281,7 +281,7 @@ public class DiwaliCustomerServiceImpl implements DiwaliCustomerService {
 
 						updateField(row, columns, formatter, "contact person name", customer::setContactPersonName);
 
-						updateField(row, columns, formatter, "designation", customer::setDesignation);
+						updateField(row, columns, formatter, "designation, department", customer::setDesignation);
 
 						updateField(row, columns, formatter, "department", customer::setDepartment);
 
