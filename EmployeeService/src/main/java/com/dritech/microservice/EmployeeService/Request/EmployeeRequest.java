@@ -47,6 +47,8 @@ public class EmployeeRequest {
 
 	private String password;
 
+	private String officeBranch;
+
 	@DecimalMin(value = "0.0", inclusive = false, message = "Salary must be positive")
 	private Double salary;
 
@@ -154,6 +156,14 @@ public class EmployeeRequest {
 
 	public void setManagerId(String managerId) {
 		this.managerId = managerId;
+	}
+
+	public String getOfficeBranch() {
+		return officeBranch;
+	}
+
+	public void setOfficeBranch(String officeBranch) {
+		this.officeBranch = officeBranch;
 	}
 
 }

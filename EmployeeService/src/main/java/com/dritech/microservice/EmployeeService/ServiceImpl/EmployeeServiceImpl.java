@@ -186,4 +186,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employees.map(employeeMapper::toResponse);
 	}
 
+	@Override
+	public List<String> getDistinctOfficeBranches() {
+		return employeeRepository.findDistinctOfficeBranches();
+	}
+
+	@Transactional(readOnly = true)
+	public List<EmployeeResponse> getEmployeesByOfficeBranch(String officeBranch) {
+		log.info("Fetching employees by officeBranch: {}", officeBranch);
+		List<Employee> employees = this.employeeRepository.findByOfficeBranch(officeBranch);
+		return this.employeeMapper.toResponseList(employees);
+	}
+
 }

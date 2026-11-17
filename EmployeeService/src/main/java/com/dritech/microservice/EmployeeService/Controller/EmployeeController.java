@@ -1,6 +1,8 @@
 package com.dritech.microservice.EmployeeService.Controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -153,4 +155,26 @@ public class EmployeeController {
 		return ResponseEntity.ok(responses);
 	}
 
+	@GetMapping("/office-branches")
+	public ResponseEntity<Map<String, Object>> getDistinctOfficeBranches() {
+
+	    log.info("Fetching distinct office branches");
+
+	    List<String> branches = employeeService.getDistinctOfficeBranches();
+
+	    Map<String, Object> response = new LinkedHashMap<>();
+	    response.put("success", true);
+	    response.put("message", "Distinct office branches fetched successfully");
+	    response.put("data", Map.of("officeBranches", branches));
+
+	    return ResponseEntity.ok(response);
+	}
+	
+
+	   @GetMapping({"/by-office-branch"})
+	   public ResponseEntity<List<EmployeeResponse>> getEmployeesByOfficeBranch(@RequestParam String officeBranch) {
+	      log.info("Fetching employees for office branch: {}", officeBranch);
+	      List<EmployeeResponse> responses = this.employeeService.getEmployeesByOfficeBranch(officeBranch);
+	      return ResponseEntity.ok(responses);
+	   }
 }

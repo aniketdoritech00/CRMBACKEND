@@ -40,7 +40,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	long countByDepartment(Department department);
 
 	long countByStatus(EmployeeStatus status);
-	
+
 	Page<Employee> findByDepartment(Department department, Pageable pageable);
-	
+
+	@Query("""
+			    SELECT DISTINCT e.officeBranch
+			    FROM Employee e
+			    WHERE e.officeBranch IS NOT NULL
+			      AND TRIM(e.officeBranch) <> ''
+			    ORDER BY e.officeBranch
+			""")
+	List<String> findDistinctOfficeBranches();
+
+	List<Employee> findByOfficeBranch(String officeBranch);
+
 }

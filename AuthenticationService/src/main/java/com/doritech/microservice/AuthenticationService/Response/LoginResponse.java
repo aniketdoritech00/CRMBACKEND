@@ -1,73 +1,76 @@
 package com.doritech.microservice.AuthenticationService.Response;
+
 public class LoginResponse {
-    private String username;
-    private String token;
-    private String fullname;
-    private String role;
-  	private String phoneNumber;
-  	private String position;
-	public LoginResponse(String username, String token) {
-		super();
-		this.username = username;
-		this.token = token;
-	}
-	
-	
+   private String id;
+   private String username;
+   private String token;
+   private String fullname;
+   private String role;
+   private String phoneNumber;
+   private String position;
+   private String officeBranch;
 
-	public LoginResponse(String username, String token, String fullname, String role, String phoneNumber,
-			String position) {
-		super();
-		this.username = username;
-		this.token = token;
-		this.fullname = fullname;
-		this.role = role;
-		this.phoneNumber = phoneNumber;
-		this.position = position;
-	}
+   public String getId() {
+      return this.id;
+   }
 
+   public void setId(String id) {
+      this.id = id;
+   }
 
+   public String getUsername() {
+      return this.username;
+   }
 
-	public String getFullname() {
-		return fullname;
-	}
+   public void setUsername(String username) {
+      this.username = username;
+   }
 
+   public String getToken() {
+      return this.token;
+   }
 
+   public void setToken(String token) {
+      this.token = token;
+   }
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
+   public String getFullname() {
+      return this.fullname;
+   }
 
+   public void setFullname(String fullname) {
+      this.fullname = fullname;
+   }
 
+   public String getRole() {
+      return this.role;
+   }
 
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getToken() {
-		return token;
-	}
-	public void setToken(String token) {
-		this.token = token;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
-	}
-    
+   public void setRole(String role) {
+      this.role = role;
+   }
+
+   public String getPhoneNumber() {
+      return this.phoneNumber;
+   }
+
+   public void setPhoneNumber(String phoneNumber) {
+      this.phoneNumber = phoneNumber;
+   }
+
+   public String getPosition() {
+      return this.position;
+   }
+
+   public void setPosition(String position) {
+      this.position = position;
+   }
+
+   public String getOfficeBranch() {
+      return this.officeBranch;
+   }
+
+   public void setOfficeBranch(String officeBranch) {
+      this.officeBranch = officeBranch;
+   }
 }

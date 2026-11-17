@@ -1,28 +1,32 @@
+
 package com.doritech.microservice.AuthenticationService.Response;
 
 import java.time.LocalDateTime;
 
 public class ApiResponse<T> {
+
     private boolean success;
     private String message;
     private T data;
     private LocalDateTime timestamp;
 
-    public ApiResponse() {}
+    public ApiResponse() {
+    }
 
-    public ApiResponse(boolean success, String message, T data, LocalDateTime timestamp) {
+    public ApiResponse(boolean success, String message, T data,
+                       LocalDateTime timestamp) {
         this.success = success;
         this.message = message;
         this.data = data;
         this.timestamp = timestamp;
     }
 
-    // ✅ Static builder factory
+    // Builder method
     public static <T> Builder<T> builder() {
         return new Builder<>();
     }
 
-    // ✅ Static Success/Error Methods
+    // Success response with data
     public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
                 .success(true)
@@ -31,6 +35,7 @@ public class ApiResponse<T> {
                 .build();
     }
 
+    // Success response with message and data
     public static <T> ApiResponse<T> success(String message, T data) {
         return ApiResponse.<T>builder()
                 .success(true)
@@ -40,6 +45,7 @@ public class ApiResponse<T> {
                 .build();
     }
 
+    // Error response
     public static <T> ApiResponse<T> error(String message) {
         return ApiResponse.<T>builder()
                 .success(false)
@@ -48,6 +54,7 @@ public class ApiResponse<T> {
                 .build();
     }
 
+    // Getters and setters
     public boolean isSuccess() {
         return success;
     }
@@ -80,7 +87,9 @@ public class ApiResponse<T> {
         this.timestamp = timestamp;
     }
 
+    // Static inner Builder class
     public static class Builder<T> {
+
         private boolean success;
         private String message;
         private T data;
@@ -107,7 +116,12 @@ public class ApiResponse<T> {
         }
 
         public ApiResponse<T> build() {
-            return new ApiResponse<>(success, message, data, timestamp);
+            return new ApiResponse<>(
+                    success,
+                    message,
+                    data,
+                    timestamp
+            );
         }
     }
 }

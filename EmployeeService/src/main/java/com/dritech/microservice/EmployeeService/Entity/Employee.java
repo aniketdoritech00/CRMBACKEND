@@ -52,6 +52,7 @@ public class Employee {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private EmployeeStatus status;
+	private String officeBranch;
 
 	private String address;
 	private Double salary;
@@ -210,6 +211,14 @@ public class Employee {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public String getOfficeBranch() {
+		return officeBranch;
+	}
+
+	public void setOfficeBranch(String officeBranch) {
+		this.officeBranch = officeBranch;
 	}
 
 }

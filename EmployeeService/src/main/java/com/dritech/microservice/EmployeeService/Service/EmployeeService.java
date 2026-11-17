@@ -43,4 +43,8 @@ public interface EmployeeService {
 	long countByStatus(EmployeeStatus status);
 
 	Page<EmployeeResponse> searchEmployeesByDepartment(Department department, Pageable pageable);
+
+	List<String> getDistinctOfficeBranches();
+
+	List<EmployeeResponse> getEmployeesByOfficeBranch(String officeBranch);
 }
